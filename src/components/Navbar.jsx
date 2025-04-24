@@ -12,13 +12,31 @@ const Navbar = () => {
     body.classList.toggle("dark-mode");
   }
 
+  const scrollToHome = () => {
+    const homeSection = document.getElementById("home__section");
+    if (homeSection) {
+      homeSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <nav id="navbar">
-        <div className="nav__logo--wrapper navbar__items"><img src={TraderJoeLogoNoText} alt="Logo" className="nav__logo" /></div>
+        <div className="nav__logo--wrapper navbar__items">
+          <img
+            src={TraderJoeLogoNoText}
+            alt="Logo"
+            className="nav__logo"
+            onClick={scrollToHome}
+          />
+        </div>
         <div className="nav__links navbar__items">
+          <div className="nav__link">
+            <span className="nav__login">Log In</span>{" "}
+            <span className="nav__slash">/</span>{" "}
+            <span className="nav__signup">Sign Up</span>
+          </div>
           <select className="nav__link nav__dropdown">
-            More (dropdown menu)
             <option disabled selected className="nav__option">
               Learn More...
             </option>
@@ -27,7 +45,7 @@ const Navbar = () => {
             <option className="nav__option">FAQ</option>
           </select>
           <div className="nav__link">
-            <Link to="/">
+            <Link to="/" onClick={scrollToHome}>
               <PiHouseLineBold className="nav__icon" />
             </Link>
           </div>

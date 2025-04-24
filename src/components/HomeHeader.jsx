@@ -3,12 +3,19 @@ import "../styles/Home.css";
 import WhiteBrickWallpaper from "../assets/white-brick-wallpaper.jpg";
 import RedBrickWallpaper from "../assets/red-brick-wallpaper.jpg";
 import TraderJoeLogoNoText from "../assets/trader-joe-logo-no-text.png";
-import TraderJoeLogoText from "../assets/trader-joe-logo-text.png";
+import LogoTextCurved from "../assets/logo-text-curved.png";
 import FreshProduceImage from "../assets/fresh-produce.jpg";
 import Fridge from "../assets/stocked-fridge.jpg";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 const HomeHeader = () => {
+  const scrollToOptions = () => {
+    const optionsSection = document.getElementById("home__options");
+    if (optionsSection) {
+      optionsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <div className="background__images">
@@ -42,7 +49,7 @@ const HomeHeader = () => {
                     className="header__logo"
                   />
                   <img
-                    src={TraderJoeLogoText}
+                    src={LogoTextCurved}
                     alt="Logo"
                     className="header__logo--text"
                   />
@@ -60,7 +67,10 @@ const HomeHeader = () => {
               <div className="homepage__bottom">
                 <h4 className="scroll__down--text">Get shopping!</h4>
                 <div className="scroll__down--wrapper">
-                  <IoIosArrowDropdownCircle className="scroll__down--btn" />
+                  <IoIosArrowDropdownCircle
+                    className="scroll__down--btn"
+                    onClick={scrollToOptions}
+                  />
                 </div>
               </div>
             </div>

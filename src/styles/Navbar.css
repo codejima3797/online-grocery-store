@@ -5,9 +5,23 @@
   justify-content: space-between;
   align-items: center;
   transition: all 300ms ease;
+  position: fixed;
+  z-index: 1000;
 }
 
 body.dark-mode .nav__icon {
+  color: #ffffff;
+}
+
+body.dark-mode .nav__login {
+  color: #ffffff;
+}
+
+body.dark-mode .nav__slash {
+  color: #ffffff;
+}
+
+body.dark-mode .nav__signup {
   color: #ffffff;
 }
 
@@ -38,12 +52,26 @@ body.dark-mode .nav__dropdown {
 }
 
 .nav__logo--wrapper {
-    padding-top: 12px;
-    padding-left: 12px;
+  padding-top: 12px;
+  padding-left: 12px;
 }
 
 .nav__logo {
-    width: 56px;
-    height: 56px;
-    transition: all 300ms ease;
+  width: 56px;
+  height: 56px;
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+.nav__login,
+.nav__signup {
+  cursor: pointer;
+}
+
+.nav__login,
+.nav__slash,
+.nav__signup {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 600;
 }

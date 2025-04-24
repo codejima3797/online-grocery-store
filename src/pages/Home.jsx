@@ -1,5 +1,6 @@
 import React from "react";
 import HomeHeader from "../components/HomeHeader";
+import HomeOptions from "../components/HomeOptions";
 import Navbar from "../components/Navbar";
 
 const Home = () => {
@@ -10,9 +11,7 @@ const Home = () => {
         <HomeHeader />
       </div>
       <div id="outer__div">
-        <section id="home__options">
-          <div >Hello</div>
-        </section>
+        <HomeOptions />
       </div>
     </>
   );
