@@ -1,13 +1,18 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import "../styles/Popular.css";
 
 const Popular = () => {
   return (
     <>
-      <Navbar />
-      <div className="popular__container">
-        <h1>Popular Items</h1>
-        {/* Add your popular items content here */}
+      <div id="outer__div">
+        <Navbar />
+        <section id="popular__section"></section>
+        <div className="container">
+          <div className="row">
+            <h1 className="popular__title">Popular Items</h1>
+          </div>
+        </div>
       </div>
     </>
   );
