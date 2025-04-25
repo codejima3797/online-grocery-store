@@ -57,7 +57,7 @@ const HomeOptions = () => {
                   className="shopping__basket"
                 />
                 <h3 className="aisle__search--text home__items">
-                  Explore our Aisles
+                  Explore By Aisle
                 </h3>
               </Link>
               <Link to="/search" className="shopping__basket--wrapper">

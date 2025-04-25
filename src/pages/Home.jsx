@@ -10,8 +10,6 @@ const Home = () => {
       <div id="outer__div">
         <Navbar />
         <HomeHeader />
-      </div>
-      <div id="outer__div">
         <HomeOptions />
         <Footer />
       </div>

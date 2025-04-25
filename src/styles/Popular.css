@@ -115,7 +115,7 @@ body.dark-mode .popular__item--details {
 
 body.dark-mode .popular__item--button.see-details {
   background-color: black;
-  border: none;
+  border: 1px solid white;
   color: white;
 }
 

@@ -255,7 +255,7 @@ HOME OPTIONS
 
 .shopping__basket--wrapper:hover .shopping__basket {
   transform: scale(1.1);
-  filter: brightness(2);
+  filter: invert(0.25) brightness(2);
 }
 
 .shopping__basket--text {
