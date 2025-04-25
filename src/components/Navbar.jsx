@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import { PiHouseLineBold } from "react-icons/pi";
 import { TiShoppingCart } from "react-icons/ti";
@@ -7,16 +7,21 @@ import { CgDarkMode } from "react-icons/cg";
 import TraderJoeLogoNoText from "../assets/trader-joe-logo-no-text.png";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   function toggleDarkMode() {
     const body = document.body;
     body.classList.toggle("dark-mode");
   }
 
   const scrollToHome = () => {
-    const homeSection = document.getElementById("home__section");
-    if (homeSection) {
-      homeSection.scrollIntoView({ behavior: "smooth" });
-    }
+    navigate("/");
+    setTimeout(() => {
+      const homeSection = document.getElementById("home__section");
+      if (homeSection) {
+        homeSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   return (

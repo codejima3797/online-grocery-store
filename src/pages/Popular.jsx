@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "../styles/Popular.css";
+import WhiteBrickWallpaper from "../assets/white-brick-wallpaper.jpg";
+import RedBrickWallpaper from "../assets/red-brick-wallpaper.jpg"
 
 const Popular = () => {
   const popularItems = useSelector((state) => state.popular.items);
@@ -10,6 +13,18 @@ const Popular = () => {
     <>
       <div id="outer__div">
         <Navbar />
+        <div className="background__images">
+          <img
+            src={WhiteBrickWallpaper}
+            alt="white brick wallpaper"
+            className="light-mode__img body__img"
+          />
+          <img
+            src={RedBrickWallpaper}
+            alt="red brick wallpaper"
+            className="dark-mode__img body__img"
+          />
+        </div>
         <section id="popular__section">
           <div className="container">
             <div className="row">
@@ -34,6 +49,10 @@ const Popular = () => {
                       <p className="popular__item--price">
                         ${item.price}/{item.unit}
                       </p>
+                      <div className="popular__item--buttons">
+                        <button className="popular__item--button see-details">See Details</button>
+                        <button className="popular__item--button add-to-cart">Add to Cart</button>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -41,6 +60,7 @@ const Popular = () => {
             </div>
           </div>
         </section>
+        <Footer />
       </div>
     </>
   );

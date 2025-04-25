@@ -2,6 +2,7 @@ import React from "react";
 import HomeHeader from "../components/HomeHeader";
 import HomeOptions from "../components/HomeOptions";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       </div>
       <div id="outer__div">
         <HomeOptions />
+        <Footer />
       </div>
     </>
   );
