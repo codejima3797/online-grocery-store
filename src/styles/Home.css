@@ -8,7 +8,6 @@ HOME HEADER
   width: 100%;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   overflow: visible;
   padding-top: 64px;
 }
@@ -17,7 +16,6 @@ HOME HEADER
   width: 100%;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   position: relative;
 }
 
@@ -71,6 +69,7 @@ body.dark-mode .home__items {
 
 .homepage__wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
   min-height: 100vh;
@@ -79,31 +78,43 @@ body.dark-mode .home__items {
   z-index: 2;
 }
 
-.header__title--wrapper {
+.header__content {
   width: 100%;
   display: flex;
-  justify-content: center;
+  margin-top: 44px;
 }
 
-.header__title {
-  text-align: center;
-  width: 280px;
+.sliding__doors--wrapper {
+  width: calc(100% / 3);
 }
 
-.homepage__header--wrapper {
-  width: 30%;
-  height: auto;
+.homepage__text {
+  width: calc(100% / 3);
   display: flex;
   flex-direction: column;
+  margin-left: 64px;
+}
+
+.homepage__title {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.homepage__para {
+  width: calc(100% - 80px);
+  font-size: 32px;
 }
 
 .header__logo--wrapper {
+  width: calc(100% / 3);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: relative;
   z-index: 2;
-  width: 100%;
 }
 
 .header__logo {
@@ -119,32 +130,6 @@ body.dark-mode .home__items {
 
 body.dark-mode .header__logo--text {
   filter: grayscale(1) invert(1) brightness(2);
-}
-
-.produce__image--wrapper,
-.fridge__image--wrapper {
-  width: 32.5%;
-  height: auto;
-  z-index: 1;
-  display: flex;
-  transform: translateY(20%);
-}
-
-.produce__image--wrapper {
-  padding-left: 84px;
-}
-
-.fridge__image--wrapper {
-  justify-content: flex-end;
-  padding-right: 84px;
-}
-
-.produce__image,
-.fridge__image {
-  width: 350px;
-  height: 350px;
-  border-radius: 9999px;
-  object-fit: cover;
 }
 
 .homepage__bottom {

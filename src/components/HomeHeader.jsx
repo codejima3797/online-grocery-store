@@ -4,8 +4,6 @@ import WhiteBrickWallpaper from "../assets/white-brick-wallpaper.jpg";
 import RedBrickWallpaper from "../assets/red-brick-wallpaper.jpg";
 import TraderJoeLogoNoText from "../assets/trader-joe-logo-no-text.png";
 import LogoTextCurved from "../assets/logo-text-curved.png";
-import FreshProduceImage from "../assets/fresh-produce.jpg";
-import Fridge from "../assets/stocked-fridge.jpg";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 const HomeHeader = () => {
@@ -34,14 +32,22 @@ const HomeHeader = () => {
         <div className="home__container home__items">
           <div className="row">
             <div className="homepage__wrapper">
-              <div className="produce__image--wrapper">
-                <img
-                  src={FreshProduceImage}
-                  alt=""
-                  className="produce__image"
-                />
-              </div>
-              <div className="homepage__header--wrapper">
+              <div className="header__content">
+                <div className="homepage__text">
+                  <h1 className="homepage__title">
+                    Welcome to Trader Joe Grocery Delivery!
+                  </h1>
+                  <h2 className="homepage__para">
+                    Delivering to homes, apartments, and businesses in your area
+                    since 1997! Order from us now and get all of our fresh,
+                    organic groceries delivered from our shelves to yours in
+                    under an hour. Guaranteed!
+                  </h2>
+                </div>
+                <div className="sliding__doors--wrapper">
+                  <img src="" alt="" className="sliding__door--left" />
+                  <img src="" alt="" className="sliding__doors--right" />
+                </div>
                 <div className="header__logo--wrapper">
                   <img
                     src={TraderJoeLogoNoText}
@@ -54,15 +60,6 @@ const HomeHeader = () => {
                     className="header__logo--text"
                   />
                 </div>
-                <div className="header__title--wrapper">
-                  <h1 className="header__title">
-                    All of our fresh, organic groceries delivered from our
-                    shelves to yours in under an hour. Guaranteed!
-                  </h1>
-                </div>
-              </div>
-              <div className="fridge__image--wrapper">
-                <img src={Fridge} alt="" className="fridge__image" />
               </div>
               <div className="homepage__bottom">
                 <h4 className="scroll__down--text">Get shopping!</h4>
