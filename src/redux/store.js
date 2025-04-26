@@ -4,6 +4,7 @@ import userReducer from './features/userSlice';
 import checkoutReducer from './features/checkoutSlice';
 import popularReducer from './features/popularSlice';
 import newReducer from './features/newSlice';
+import saleReducer from './features/saleSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     checkout: checkoutReducer,
     popular: popularReducer,
     new: newReducer,
+    sale: saleReducer,
   },
 }); 

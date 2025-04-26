@@ -1,0 +1,137 @@
+#sale__section {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.sale__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sale__title {
+  text-align: center;
+  font-size: 64px;
+  margin: 24px 0;
+  transition: all 300ms ease;
+}
+
+.sale__subtitle {
+  width: 50%;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 48px;
+  margin-top: 0;
+  transition: all 300ms ease;
+}
+
+body.dark-mode .sale__title {
+  color: #ffffff;
+}
+
+body.dark-mode .sale__subtitle {
+  color: #ffffff;
+}
+
+.sale__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+  margin-bottom: 48px;
+}
+
+.sale__list--item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 300ms ease;
+  background-color: #ffffff52;
+}
+
+body.dark-mode .sale__list--item {
+  background-color: #0000006f;
+}
+
+.sale__list--item:hover {
+  transform: translateY(-5px);
+}
+
+.sale__item--img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.sale__item--details {
+  text-align: center;
+  transition: all 300ms ease;
+  width: 100%;
+}
+
+body.dark-mode .sale__item--details {
+  color: #ffffff;
+}
+
+.sale__item--name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.sale__item--price {
+  font-size: 16px;
+}
+
+.sale__item--buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.sale__item--button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 300ms ease;
+}
+
+.sale__item--button.see-details {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+
+body.dark-mode .sale__item--button.see-details {
+  background-color: black;
+  border: none;
+  color: white;
+}
+
+.sale__item--button.add-to-cart {
+  background-color: black;
+  color: white;
+}
+
+body.dark-mode .sale__item--button.add-to-cart {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+
+.sale__item--button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+} 
