@@ -5,6 +5,8 @@ import RedBrickWallpaper from "../assets/red-brick-wallpaper.jpg";
 import TraderJoeLogoNoText from "../assets/trader-joe-logo-no-text.png";
 import LogoTextCurved from "../assets/logo-text-curved.png";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import LeftDoor from "../assets/swinging-left-door";
+import RightDoor from "../assets/swinging-right-door";
 
 const HomeHeader = () => {
   const scrollToOptions = () => {
@@ -45,8 +47,8 @@ const HomeHeader = () => {
                   </h2>
                 </div>
                 <div className="sliding__doors--wrapper">
-                  <img src="" alt="" className="sliding__door--left" />
-                  <img src="" alt="" className="sliding__doors--right" />
+                  <img src={LeftDoor} alt="" className="sliding__door--left" />
+                  <img src={RightDoor} alt="" className="sliding__doors--right" />
                 </div>
                 <div className="header__logo--wrapper">
                   <img
