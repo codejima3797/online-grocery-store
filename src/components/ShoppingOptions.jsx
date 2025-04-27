@@ -1,11 +1,26 @@
 import React from "react";
 import ShoppingOptionsBasket from "../assets/options-basket.png";
+import "../styles/Shopping.css";
 import { Link } from "react-router-dom";
+import WhiteBrickWallpaper from "../assets/white-brick-wallpaper.jpg";
+import RedBrickWallpaper from "../assets/red-brick-wallpaper.jpg";
 
-const HomeOptions = () => {
+const ShoppingOptions = () => {
 
   return (
     <>
+    <div className="background__images">
+        <img
+          src={WhiteBrickWallpaper}
+          alt="white brick wallpaper"
+          className="light-mode__img body__img"
+        />
+        <img
+          src={RedBrickWallpaper}
+          alt="red brick wallpaper"
+          className="dark-mode__img body__img"
+        />
+      </div>
       <section id="home__options">
         <div className="container">
           <div className="row">
@@ -78,4 +93,4 @@ const HomeOptions = () => {
   );
 };
 
-export default HomeOptions;
+export default ShoppingOptions;
