@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "../styles/Popular.css";
 import WhiteBrickWallpaper from "../assets/white-brick-wallpaper.jpg";
 import RedBrickWallpaper from "../assets/red-brick-wallpaper.jpg";
-import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const PopularSection = () => {
-  const popularItems = useSelector((state) => state.popular.items);
+const NewSection = () => {
+  const newItems = useSelector((state) => state.new.items);
   const navigate = useNavigate();
 
   const handleBackButton = () => {
@@ -28,10 +27,10 @@ const PopularSection = () => {
           className="dark-mode__img body__img"
         />
       </div>
-      <section id="popular__section">
+      <section id="new__section">
         <div className="container">
           <div className="row">
-            <div className="popular__header">
+            <div className="new__header">
               <div className="back-to-shopping__btn--wrapper">
                 <button
                   className="back-to-shopping__btn"
@@ -42,32 +41,31 @@ const PopularSection = () => {
                 </button>
               </div>
               <div className="header__text">
-                <h1 className="popular__title">Popular Items</h1>
-                <h4 className="popular__subtitle">
-                  We update our 20 most popular items every month to make sure
-                  that you, our valued customers, are always kept up to date on
-                  our most loved and purchased products!
+                <h1 className="new__title">New Items</h1>
+                <h4 className="new__subtitle">
+                  Check out our latest additions! We update our selection of new
+                  items every week to bring you the freshest products available.
                 </h4>
               </div>
             </div>
-            <div className="popular__list">
-              {popularItems.map((item) => (
-                <div key={item.id} className="popular__list--item">
+            <div className="new__list">
+              {newItems.map((item) => (
+                <div key={item.id} className="new__list--item">
                   <img
                     src={require(`../assets/${item.image}`)}
                     alt={item.name}
-                    className="popular__item--img"
+                    className="new__item--img"
                   />
-                  <div className="popular__item--details">
-                    <p className="popular__item--name">{item.name}</p>
-                    <p className="popular__item--price">
+                  <div className="new__item--details">
+                    <p className="new__item--name">{item.name}</p>
+                    <p className="new__item--price">
                       ${item.price}/{item.unit}
                     </p>
-                    <div className="popular__item--buttons">
-                      <button className="popular__item--button see-details">
+                    <div className="new__item--buttons">
+                      <button className="new__item--button see-details">
                         See Details
                       </button>
-                      <button className="popular__item--button add-to-cart">
+                      <button className="new__item--button add-to-cart">
                         Add to Cart
                       </button>
                     </div>
@@ -82,4 +80,4 @@ const PopularSection = () => {
   );
 };
 
-export default PopularSection;
+export default NewSection;

@@ -3,6 +3,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  animation: fadeIn 1.5s ease-in;
 }
 
 body {
@@ -105,4 +106,68 @@ body.dark-mode .light-mode__img {
 
 body.dark-mode .dark-mode__img {
   opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade__in {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.fade__out {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.fade__out.hidden {
+  opacity: 0;
+}
+
+.fade__in.visible {
+  opacity: 1;
+}
+
+.fade__in--shopping {
+  animation: fadeIn 1.5s ease-in;
+}
+
+.back-to-shopping__btn--wrapper {
+  position: absolute;
+  left: 64px;
+}
+
+.back-to-shopping__btn {
+  width: 150px;
+  height: 44px;
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  border-radius: 24px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+body.dark-mode .back-to-shopping__btn {
+  background-color: white;
+  color: black;
 }

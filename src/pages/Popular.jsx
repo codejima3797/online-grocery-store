@@ -4,9 +4,11 @@ import Footer from "../components/Footer";
 import PopularSection from "../components/PopularSection";
 
 const Popular = () => {
+
+
   return (
     <>
-      <div id="outer__div">
+      <div className="outer__div">
         <Navbar />
         <PopularSection />
         <Footer />

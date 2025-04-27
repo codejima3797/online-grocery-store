@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 const Home = () => {
   return (
     <>
-      <div id="outer__div">
+      <div id="outer__div fade__in">
         <Navbar />
         <HomeHeader />
         <Footer />

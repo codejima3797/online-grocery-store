@@ -2,8 +2,7 @@ import React from "react";
 import ShoppingOptionsBasket from "../assets/options-basket.png";
 import "../styles/Shopping.css";
 import { Link } from "react-router-dom";
-import WhiteBrickWallpaper from "../assets/white-brick-wallpaper.jpg";
-import RedBrickWallpaper from "../assets/red-brick-wallpaper.jpg";
+import GroceryEntrance2 from "../assets/grocery-entrance-2.jpg"
 
 const ShoppingOptions = () => {
 
@@ -11,17 +10,17 @@ const ShoppingOptions = () => {
     <>
     <div className="background__images">
         <img
-          src={WhiteBrickWallpaper}
+          src={GroceryEntrance2}
           alt="white brick wallpaper"
-          className="light-mode__img body__img"
+          className="light-mode__img--shopping"
         />
         <img
-          src={RedBrickWallpaper}
+          src={GroceryEntrance2}
           alt="red brick wallpaper"
-          className="dark-mode__img body__img"
+          className="dark-mode__img--shopping"
         />
       </div>
-      <section id="home__options">
+      <section id="shopping__options">
         <div className="container">
           <div className="row">
             <div className="options__header">
