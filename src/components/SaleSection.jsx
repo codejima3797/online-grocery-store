@@ -1,16 +1,33 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import WhiteBrickWallpaper from "../assets/white-brick-wallpaper.jpg";
 import RedBrickWallpaper from "../assets/red-brick-wallpaper.jpg";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { addToCart } from '../redux/features/cartSlice';
+import '../styles/Sale.css';
 
-const SaleSection = () => {
+const SaleSection = ({ setIsFading }) => {
   const saleItems = useSelector((state) => state.sale.items);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleBackButton = () => {
-    navigate("/shopping");
+  const handleNavigation = (destination) => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate(destination);
+    }, 1000);
+  };
+
+  const handleSeeDetails = (itemId) => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate(`/item-details/sale/${itemId}`);
+    }, 1000);
+  };
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
   };
 
   return (
@@ -34,7 +51,7 @@ const SaleSection = () => {
               <div className="back-to-shopping__btn--wrapper">
                 <button
                   className="back-to-shopping__btn"
-                  onClick={handleBackButton}
+                  onClick={() => handleNavigation("/shopping")}
                 >
                   <FaArrowLeft />
                   <p>Go Back</p>
@@ -62,10 +79,16 @@ const SaleSection = () => {
                       ${item.price}/{item.unit}
                     </p>
                     <div className="sale__item--buttons">
-                      <button className="sale__item--button see-details">
+                      <button 
+                        className="sale__item--button see-details"
+                        onClick={() => handleSeeDetails(item.id)}
+                      >
                         See Details
                       </button>
-                      <button className="sale__item--button add-to-cart">
+                      <button 
+                        className="sale__item--button add-to-cart"
+                        onClick={() => handleAddToCart(item)}
+                      >
                         Add to Cart
                       </button>
                     </div>

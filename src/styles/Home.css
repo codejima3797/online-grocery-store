@@ -173,7 +173,7 @@ body.dark-mode .home__items {
 }
 
 .sliding__doors--wrapper:hover .sliding__door--right {
-  transform: rotateY(-86deg);
+  transform: rotateY(-89deg);
 }
 
 .sliding__doors--wrapper:hover .doors__content {

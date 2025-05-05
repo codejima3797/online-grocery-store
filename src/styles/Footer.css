@@ -52,7 +52,7 @@ body.dark-mode .footer__text--wrapper {
 }
 
 .footer__link::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -100,24 +100,25 @@ body.dark-mode .footer__link::after {
   font-size: 24px;
   cursor: pointer;
   transition: all 300ms ease;
+  color: black;
+}
+
+body.dark-mode .footer__social {
+  color: white;
 }
 
 .footer__social:hover {
-    color: rgb(98, 2, 98);
+  color: rgb(40, 40, 250);
+  transform: translateY(-2px);
 }
 
 body.dark-mode .footer__social:hover {
-    color: rgb(255, 141, 255);
-}
-
-.footer__social:hover {
-  transform: translateY(-2px);
+  color: rgb(40, 40, 250);
 }
 
 .footer__logo {
   width: 150px;
   height: 150px;
-  cursor: pointer;
 }
 
 .copyright__text {

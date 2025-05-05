@@ -1,14 +1,22 @@
 import React from "react";
 import ShoppingOptionsBasket from "../assets/options-basket.png";
 import "../styles/Shopping.css";
-import { Link } from "react-router-dom";
-import GroceryEntrance2 from "../assets/grocery-entrance-2.jpg"
+import { useNavigate } from "react-router-dom";
+import GroceryEntrance2 from "../assets/grocery-entrance-2.jpg";
 
-const ShoppingOptions = () => {
+const ShoppingOptions = ({ setIsFading }) => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (destination) => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate(destination);
+    }, 1000);
+  };
 
   return (
     <>
-    <div className="background__images">
+      <div className="background__images">
         <img
           src={GroceryEntrance2}
           alt="white brick wallpaper"
@@ -30,31 +38,43 @@ const ShoppingOptions = () => {
               </h3>
             </div>
             <div className="shopping__baskets">
-              <Link to="/new" className="shopping__basket--wrapper">
+              <div
+                className="shopping__basket--wrapper"
+                onClick={() => handleNavigation("/new")}
+              >
                 <img
                   src={ShoppingOptionsBasket}
                   alt="Shopping Basket"
                   className="shopping__basket"
                 />
                 <h3 className="shopping__basket--text home__items">New</h3>
-              </Link>
-              <Link to="/popular" className="shopping__basket--wrapper">
+              </div>
+              <div
+                className="shopping__basket--wrapper"
+                onClick={() => handleNavigation("/popular")}
+              >
                 <img
                   src={ShoppingOptionsBasket}
                   alt="Shopping Basket"
                   className="shopping__basket"
                 />
                 <h3 className="shopping__basket--text home__items">Popular</h3>
-              </Link>
-              <Link to="/sale" className="shopping__basket--wrapper">
+              </div>
+              <div
+                className="shopping__basket--wrapper"
+                onClick={() => handleNavigation("/sale")}
+              >
                 <img
                   src={ShoppingOptionsBasket}
                   alt="Shopping Basket"
                   className="shopping__basket"
                 />
                 <h3 className="shopping__basket--text home__items">On Sale</h3>
-              </Link>
-              <Link to="/deliBakery" className="shopping__basket--wrapper">
+              </div>
+              <div
+                className="shopping__basket--wrapper"
+                onClick={() => handleNavigation("/deli-bakery")}
+              >
                 <img
                   src={ShoppingOptionsBasket}
                   alt="Shopping Basket"
@@ -63,8 +83,11 @@ const ShoppingOptions = () => {
                 <h3 className="shopping__basket--text home__items">
                   Deli/Bakery
                 </h3>
-              </Link>
-              <Link to="/aisles" className="shopping__basket--wrapper">
+              </div>
+              <div
+                className="shopping__basket--wrapper"
+                onClick={() => handleNavigation("/aisles")}
+              >
                 <img
                   src={ShoppingOptionsBasket}
                   alt="Shopping Basket"
@@ -73,8 +96,11 @@ const ShoppingOptions = () => {
                 <h3 className="aisle__search--text home__items">
                   Explore By Aisle
                 </h3>
-              </Link>
-              <Link to="/search" className="shopping__basket--wrapper">
+              </div>
+              <div
+                className="shopping__basket--wrapper"
+                onClick={() => handleNavigation("/search")}
+              >
                 <img
                   src={ShoppingOptionsBasket}
                   alt="Shopping Basket"
@@ -83,7 +109,7 @@ const ShoppingOptions = () => {
                 <h3 className="aisle__search--text home__items">
                   Quick Search
                 </h3>
-              </Link>
+              </div>
             </div>
           </div>
         </div>

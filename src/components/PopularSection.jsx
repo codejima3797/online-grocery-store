@@ -1,17 +1,33 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "../styles/Popular.css";
 import WhiteBrickWallpaper from "../assets/white-brick-wallpaper.jpg";
 import RedBrickWallpaper from "../assets/red-brick-wallpaper.jpg";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { addToCart } from '../redux/features/cartSlice';
 
-const PopularSection = () => {
+const PopularSection = ({ setIsFading }) => {
   const popularItems = useSelector((state) => state.popular.items);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleBackButton = () => {
-    navigate("/shopping");
+  const handleNavigation = (destination) => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate(destination);
+    }, 1000);
+  };
+
+  const handleSeeDetails = (itemId) => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate(`/item-details/popular/${itemId}`);
+    }, 1000);
+  };
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
   };
 
   return (
@@ -35,7 +51,7 @@ const PopularSection = () => {
               <div className="back-to-shopping__btn--wrapper">
                 <button
                   className="back-to-shopping__btn"
-                  onClick={handleBackButton}
+                  onClick={() => handleNavigation("/shopping")}
                 >
                   <FaArrowLeft />
                   <p>Go Back</p>
@@ -64,10 +80,16 @@ const PopularSection = () => {
                       ${item.price}/{item.unit}
                     </p>
                     <div className="popular__item--buttons">
-                      <button className="popular__item--button see-details">
+                      <button
+                        className="popular__item--button see-details"
+                        onClick={() => handleSeeDetails(item.id)}
+                      >
                         See Details
                       </button>
-                      <button className="popular__item--button add-to-cart">
+                      <button
+                        className="popular__item--button add-to-cart"
+                        onClick={() => handleAddToCart(item)}
+                      >
                         Add to Cart
                       </button>
                     </div>

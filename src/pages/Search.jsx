@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Search = () => {
+    const [isFading, setIsFading] = useState(false);
+
     return (
-        <div>
-            Hello
+      <>
+        <div className={`outer__div fade__in ${isFading ? "fade-out" : ""}`}>
+          <Navbar setIsFading={setIsFading} />
+          <div className="container">
+            <div className="row">
+              <div>Hello</div>
+            </div>
+          </div>
+          <Footer setIsFading={setIsFading} />
         </div>
+      </>
     );
 }
 

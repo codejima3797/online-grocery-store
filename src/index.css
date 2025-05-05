@@ -26,11 +26,13 @@ code {
     monospace;
 }
 
-#outer__div {
+.outer__div {
   width: 100%;
   height: 100vh;
   position: relative;
   background-color: transparent;
+  opacity: 1;
+  transition: opacity 1.5s ease-out;
 }
 
 .container {
@@ -117,36 +119,14 @@ body.dark-mode .dark-mode__img {
   }
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 .fade__in {
-  opacity: 0;
-  transition: opacity 1s ease-in;
+  animation: fadeIn 1s ease-in;
 }
 
-.fade__out {
-  opacity: 1;
+.fade-out {
+  opacity: 0;
   transition: opacity 1s ease-out;
-}
-
-.fade__out.hidden {
-  opacity: 0;
-}
-
-.fade__in.visible {
-  opacity: 1;
-}
-
-.fade__in--shopping {
-  animation: fadeIn 1.5s ease-in;
-}
+} 
 
 .back-to-shopping__btn--wrapper {
   position: absolute;
@@ -171,3 +151,28 @@ body.dark-mode .back-to-shopping__btn {
   background-color: white;
   color: black;
 }
+
+.light-mode__img--shopping {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 700ms ease;
+  filter: opacity(0.4);
+}
+
+.dark-mode__img--shopping {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 700ms ease;
+  filter: brightness(20%);
+}
+

@@ -1,12 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Footer.css";
 import TraderJoeLogoNoText from "../assets/trader-joe-logo-no-text.png";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = ({ setIsFading }) => {
   const navigate = useNavigate();
 
   const scrollToHome = () => {
@@ -17,6 +17,13 @@ const Footer = () => {
         homeSection.scrollIntoView({ behavior: "smooth" });
       }
     }, 100);
+  };
+
+  const handleNavigation = (destination) => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate(destination);
+    }, 1000);
   };
 
   return (
@@ -33,28 +40,58 @@ const Footer = () => {
               />
             </div>
             <div className="footer__text--wrapper">
-              <h4 className="footer__socials--title">
-                Check out our socials!
-              </h4>
+              <h4 className="footer__socials--title">Check out our socials!</h4>
               <div className="footer__socials">
-                <div className="footer__social"><FaLinkedin /></div>
-                <div className="footer__social"><FaGithub /></div>
-                <div className="footer__social"><FaLink /></div>
+                <Link
+                  to="https://www.linkedin.com/in/joseph-gray-41b126128/"
+                  target="_blank"
+                  className="footer__social"
+                >
+                  <FaLinkedin />
+                </Link>
+                <Link
+                  to="https://github.com/codejima3797"
+                  target="_blank"
+                  className="footer__social"
+                >
+                  <FaGithub />
+                </Link>
+                <Link
+                  to="https://codejima3797.github.io/my-e-portfolio/"
+                  target="_blank"
+                  className="footer__social"
+                >
+                  <FaLink />
+                </Link>
               </div>
               <div className="footer__links">
-                <div className="footer__link">About Us</div>
-                <div className="footer__link">Contact</div>
-                <div className="footer__link">FAQ</div>
+                <div
+                  className="footer__link"
+                  onClick={() => handleNavigation("/about")}
+                >
+                  About Us
+                </div>
+                <div
+                  className="footer__link"
+                  onClick={() => handleNavigation("/")} //create modal here instead of new contact page. Add phone and email capabilities
+                >
+                  Contact
+                </div>
+                <div
+                  className="footer__link"
+                  onClick={() => handleNavigation("/faq")}
+                >
+                  FAQ
+                </div>
               </div>
 
-              <p className="copyright__text">© Copyright 2024</p>
+              <p className="copyright__text">© Copyright Joseph Gray 2024</p>
             </div>
             <div className="footer__logo--wrapper">
               <img
                 src={TraderJoeLogoNoText}
                 alt="Logo"
                 className="footer__logo"
-                onClick={scrollToHome}
               />
             </div>
           </div>

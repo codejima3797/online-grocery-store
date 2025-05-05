@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-const DeliBakery = () => {
+const FAQ = () => {
     const [isFading, setIsFading] = useState(false);
 
     return (
@@ -20,4 +20,4 @@ const DeliBakery = () => {
     );
 }
 
-export default DeliBakery;
+export default FAQ;

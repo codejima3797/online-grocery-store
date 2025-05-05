@@ -10,6 +10,11 @@ import DeliBakery from "./pages/deli-bakery";
 import Aisles from "./pages/aisles";
 import Search from "./pages/search";
 import Shopping from "./pages/shopping";
+import About from "./pages/about";
+import FAQ from "./pages/faq";
+import Checkout from "./pages/checkout";
+import Cart from "./pages/cart";
+import ItemDetails from "./pages/item-details";
 
 function App() {
   return (
@@ -17,13 +22,18 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/shopping" element={<Shopping />} />
           <Route path="/new" element={<New />} />
           <Route path="/popular" element={<Popular />} />
           <Route path="/sale" element={<Sale />} />
           <Route path="/deli-bakery" element={<DeliBakery />} />
           <Route path="/aisles" element={<Aisles />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/shopping" element={<Shopping />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/item-details/:section/:id" element={<ItemDetails />} />
         </Routes>
       </Router>
     </Provider>

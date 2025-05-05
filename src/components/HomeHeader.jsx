@@ -9,9 +9,16 @@ import { FaChevronCircleUp } from "react-icons/fa";
 import SwingingLeftDoor from "../assets/swinging-left-door.PNG";
 import SwingingRightDoor from "../assets/swinging-right-door.PNG";
 
-const HomeHeader = () => {
+const HomeHeader = ({ setIsFading }) => {
   const navigate = useNavigate();
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate('/');
+    }, 1500);
+  };
 
   const handleDoorClick = () => {
     setIsTransitioning(true);
