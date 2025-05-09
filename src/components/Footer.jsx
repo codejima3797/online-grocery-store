@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Footer.css";
 import TraderJoeLogoNoText from "../assets/trader-joe-logo-no-text.png";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
+import ContactModal from "./ContactModal";
 
 const Footer = ({ setIsFading }) => {
   const navigate = useNavigate();
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const scrollToHome = () => {
     navigate("/");
@@ -73,7 +75,7 @@ const Footer = ({ setIsFading }) => {
                 </div>
                 <div
                   className="footer__link"
-                  onClick={() => handleNavigation("/")} //create modal here instead of new contact page. Add phone and email capabilities
+                  onClick={() => setIsContactModalOpen(true)}
                 >
                   Contact
                 </div>
@@ -97,6 +99,10 @@ const Footer = ({ setIsFading }) => {
           </div>
         </div>
       </footer>
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </>
   );
 };

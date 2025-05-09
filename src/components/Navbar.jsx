@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/Navbar.css";
 import { PiHouseLineBold } from "react-icons/pi";
@@ -6,12 +6,13 @@ import { TiShoppingCart } from "react-icons/ti";
 import { CgDarkMode } from "react-icons/cg";
 import TraderJoeLogoNoText from "../assets/trader-joe-logo-no-text.png";
 import { useSelector } from 'react-redux';
+import ContactModal from "./ContactModal";
 
 const Navbar = ({ setIsFading }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const cartItems = useSelector((state) => state.cart.totalItems);
-
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   function toggleDarkMode() {
     const body = document.body;
@@ -48,6 +49,8 @@ const Navbar = ({ setIsFading }) => {
               const value = e.target.value;
               if (value === "about") {
                 handleNavigation("/about");
+              } else if (value === "contact") {
+                setIsContactModalOpen(true);
               } else if (value === "faq") {
                 handleNavigation("/faq");
               }
@@ -68,6 +71,7 @@ const Navbar = ({ setIsFading }) => {
               </div>
             </div>
           )}
+          {location.pathname !== "/cart" && (
           <div className="nav__link">
             <div onClick={() => handleNavigation("/cart")} className="cart-icon-wrapper">
               <TiShoppingCart className="nav__icon" />
@@ -76,6 +80,7 @@ const Navbar = ({ setIsFading }) => {
               )}
             </div>
           </div>
+          )}
           <div className="nav__link">
             <CgDarkMode
               className="nav__icon dark-mode"
@@ -85,6 +90,10 @@ const Navbar = ({ setIsFading }) => {
           {/* burger for mobile */}
         </div>
       </nav>
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </>
   );
 };

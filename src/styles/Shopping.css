@@ -78,6 +78,7 @@ body.dark-mode .dark-mode__img--shopping {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding-top: 24px;
 }
 
 .shopping__basket--wrapper {

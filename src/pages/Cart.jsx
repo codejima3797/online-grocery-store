@@ -9,7 +9,7 @@ const Cart = () => {
   const [isFading, setIsFading] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
-  const totalItems = useSelector((state) => state.cart.totalItems);
+//  const totalItems = useSelector((state) => state.cart.totalItems);
 
   const handleRemoveItem = (itemId) => {
     dispatch(removeFromCart(itemId));
@@ -49,7 +49,7 @@ const Cart = () => {
                     <div className="item-details">
                       <h3>{item.name}</h3>
                       <p>
-                        ${item.price} per {item.unit}
+                        ${item.price}
                       </p>
                     </div>
                     <div className="quantity-controls">

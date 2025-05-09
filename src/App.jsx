@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import ScrollToTop from './components/ScrollToTop';
 import Home from "./pages/home";
 import New from "./pages/new"
 import Popular from "./pages/popular";
@@ -20,6 +21,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shopping" element={<Shopping />} />
