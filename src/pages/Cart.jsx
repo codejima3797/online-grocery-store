@@ -4,12 +4,22 @@ import { removeFromCart, updateQuantity } from "../redux/features/cartSlice";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/Cart.css";
+import ShoppingCart from "../assets/shopping-cart.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const [isFading, setIsFading] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
 //  const totalItems = useSelector((state) => state.cart.totalItems);
+
+const handleNavigation = (destination) => {
+  setIsFading(true);
+  setTimeout(() => {
+    navigate(destination);
+  }, 1000);
+};
 
   const handleRemoveItem = (itemId) => {
     dispatch(removeFromCart(itemId));
@@ -32,6 +42,13 @@ const Cart = () => {
     <div className={`outer__div fade__in ${isFading ? "fade-out" : ""}`}>
       <div className="cart-page">
         <Navbar setIsFading={setIsFading} />
+        <div className="background__images">
+          <img
+            src={ShoppingCart}
+            alt="shopping cart"
+            className="cart__img body__img"
+          />
+        </div>
         <div className="cart-container">
           <h1 className="cart-title">Your Cart</h1>
           {cartItems.length === 0 ? (
@@ -80,7 +97,7 @@ const Cart = () => {
               </div>
               <div className="cart-summary">
                 <h2>Total: ${calculateTotal().toFixed(2)}</h2>
-                <button className="checkout-btn">Proceed to Checkout</button>
+                <button className="checkout-btn" onClick={() => handleNavigation("/checkout")}>Proceed to Checkout</button>
               </div>
             </div>
           )}
