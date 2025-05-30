@@ -20,7 +20,7 @@ const initialState = {
     },
     {
       id: 3,
-      name: "Tomato Basil",
+      name: "Tomato Basil Soup",
       price: 4.99,
       unit: "can",
       image: "tomato-basil-soup.PNG",

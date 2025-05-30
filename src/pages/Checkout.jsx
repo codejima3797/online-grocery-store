@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "../redux/features/cartSlice";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/Checkout.css";
@@ -6,7 +9,11 @@ import CheckoutCounter from "../assets/checkout-counter-2.JPG";
 
 const Checkout = () => {
   const [isFading, setIsFading] = useState(false);
-  const [cartSubtotal, setCartSubtotal] = useState(0);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const cartTotal = useSelector((state) => state.cart.total);
   const [formData, setFormData] = useState({
     fullName: "",
     address: "",
@@ -22,8 +29,15 @@ const Checkout = () => {
 
   const [errors, setErrors] = useState({});
 
-  const tax = cartSubtotal * 0.1;
-  const total = cartSubtotal + tax;
+  const tax = cartTotal * 0.1;
+  const total = cartTotal + tax;
+
+  const handleBackToHome = () => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  };
 
   const validateInput = (name, value) => {
     let error = "";
@@ -128,7 +142,14 @@ const Checkout = () => {
     
     // If no errors, proceed with form submission
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted:", formData);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsFadingOut(true);
+      // Clear the cart
+      dispatch(clearCart());
+      // Wait for fade out animation to complete before showing confirmation
+      setTimeout(() => {
+        setIsSubmitted(true);
+      }, 500);
     }
   };
 
@@ -147,170 +168,184 @@ const Checkout = () => {
           <div className="container">
             <div className="row">
               <div className="checkout-container">
-                <h2>Please enter your information</h2>
-                <form className="checkout-form" onSubmit={handleSubmit}>
-                  <div className="form-section">
-                    <h3>Delivery Information</h3>
-                    <div className="input-group">
-                      <label htmlFor="fullName">Full Name</label>
-                      <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        placeholder="John Doe"
-                        value={formData.fullName}
-                        onChange={handleInputChange}
-                        required
-                      />
-                      {errors.fullName && <span className="error-message">{errors.fullName}</span>}
-                    </div>
-                    <div className="input-group">
-                      <label htmlFor="address">Street Address</label>
-                      <input
-                        type="text"
-                        id="address"
-                        name="address"
-                        placeholder="123 Main St"
-                        value={formData.address}
-                        onChange={handleInputChange}
-                        required
-                      />
-                      {errors.address && <span className="error-message">{errors.address}</span>}
-                    </div>
-                    <div className="city-state-zip">
-                      <div className="input-group">
-                        <label htmlFor="city">City</label>
-                        <input
-                          type="text"
-                          id="city"
-                          name="city"
-                          placeholder="City"
-                          value={formData.city}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        {errors.city && <span className="error-message">{errors.city}</span>}
+                {!isSubmitted ? (
+                  <div className={`checkout-content ${isFadingOut ? 'fade-out' : ''}`}>
+                    <h2>Please enter your information</h2>
+                    <form className="checkout-form" onSubmit={handleSubmit}>
+                      <div className="form-section">
+                        <h3>Delivery Information</h3>
+                        <div className="input-group">
+                          <label htmlFor="fullName">Full Name</label>
+                          <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="John Doe"
+                            value={formData.fullName}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          {errors.fullName && <span className="error-message">{errors.fullName}</span>}
+                        </div>
+                        <div className="input-group">
+                          <label htmlFor="address">Street Address</label>
+                          <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            placeholder="123 Main St"
+                            value={formData.address}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          {errors.address && <span className="error-message">{errors.address}</span>}
+                        </div>
+                        <div className="city-state-zip">
+                          <div className="input-group">
+                            <label htmlFor="city">City</label>
+                            <input
+                              type="text"
+                              id="city"
+                              name="city"
+                              placeholder="City"
+                              value={formData.city}
+                              onChange={handleInputChange}
+                              required
+                            />
+                            {errors.city && <span className="error-message">{errors.city}</span>}
+                          </div>
+                          <div className="input-group">
+                            <label htmlFor="state">State</label>
+                            <input
+                              type="text"
+                              id="state"
+                              name="state"
+                              placeholder="State"
+                              value={formData.state}
+                              onChange={handleInputChange}
+                              required
+                            />
+                            {errors.state && <span className="error-message">{errors.state}</span>}
+                          </div>
+                          <div className="input-group">
+                            <label htmlFor="zipCode">ZIP Code</label>
+                            <input
+                              type="text"
+                              id="zipCode"
+                              name="zipCode"
+                              placeholder="12345"
+                              value={formData.zipCode}
+                              onChange={handleInputChange}
+                              required
+                            />
+                            {errors.zipCode && <span className="error-message">{errors.zipCode}</span>}
+                          </div>
+                        </div>
                       </div>
-                      <div className="input-group">
-                        <label htmlFor="state">State</label>
-                        <input
-                          type="text"
-                          id="state"
-                          name="state"
-                          placeholder="State"
-                          value={formData.state}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        {errors.state && <span className="error-message">{errors.state}</span>}
+                      <div className="form-section">
+                        <h3>Payment Information</h3>
+                        <div className="input-group">
+                          <label htmlFor="cardName">Name on Card</label>
+                          <input
+                            type="text"
+                            id="cardName"
+                            name="cardName"
+                            placeholder="John Doe"
+                            value={formData.cardName}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          {errors.cardName && <span className="error-message">{errors.cardName}</span>}
+                        </div>
+                        <div className="input-group">
+                          <label htmlFor="billingAddress">Billing Address</label>
+                          <input
+                            type="text"
+                            id="billingAddress"
+                            name="billingAddress"
+                            placeholder="123 Main St"
+                            value={formData.billingAddress}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          {errors.billingAddress && <span className="error-message">{errors.billingAddress}</span>}
+                        </div>
+                        <div className="card-details">
+                          <div className="input-group">
+                            <label htmlFor="cardNumber">Card Number</label>
+                            <input
+                              type="text"
+                              id="cardNumber"
+                              name="cardNumber"
+                              placeholder="1234 5678 9012 3456"
+                              value={formData.cardNumber}
+                              onChange={handleInputChange}
+                              required
+                              className="card-number"
+                            />
+                            {errors.cardNumber && <span className="error-message">{errors.cardNumber}</span>}
+                          </div>
+                          <div className="input-group">
+                            <label htmlFor="expDate">Expiration Date</label>
+                            <input
+                              type="text"
+                              id="expDate"
+                              name="expDate"
+                              placeholder="MM/YYYY"
+                              value={formData.expDate}
+                              onChange={handleInputChange}
+                              required
+                              className="exp-date"
+                            />
+                            {errors.expDate && <span className="error-message">{errors.expDate}</span>}
+                          </div>
+                          <div className="input-group">
+                            <label htmlFor="cvv">CVV</label>
+                            <input
+                              type="text"
+                              id="cvv"
+                              name="cvv"
+                              placeholder="123"
+                              value={formData.cvv}
+                              onChange={handleInputChange}
+                              required
+                              className="cvv"
+                            />
+                            {errors.cvv && <span className="error-message">{errors.cvv}</span>}
+                          </div>
+                        </div>
                       </div>
-                      <div className="input-group">
-                        <label htmlFor="zipCode">ZIP Code</label>
-                        <input
-                          type="text"
-                          id="zipCode"
-                          name="zipCode"
-                          placeholder="12345"
-                          value={formData.zipCode}
-                          onChange={handleInputChange}
-                          required
-                        />
-                        {errors.zipCode && <span className="error-message">{errors.zipCode}</span>}
+                      <div className="order-summary">
+                        <h3>Order Summary</h3>
+                        <div className="summary-row">
+                          <span>Subtotal:</span>
+                          <span>${cartTotal.toFixed(2)}</span>
+                        </div>
+                        <div className="summary-row">
+                          <span>Tax:</span>
+                          <span>${tax.toFixed(2)}</span>
+                        </div>
+                        <div className="summary-row total">
+                          <span>Total:</span>
+                          <span>${total.toFixed(2)}</span>
+                        </div>
                       </div>
-                    </div>
+                      <button type="submit" className="checkout-button">
+                        Complete Purchase
+                      </button>
+                    </form>
                   </div>
-                  <div className="form-section">
-                    <h3>Payment Information</h3>
-                    <div className="input-group">
-                      <label htmlFor="cardName">Name on Card</label>
-                      <input
-                        type="text"
-                        id="cardName"
-                        name="cardName"
-                        placeholder="John Doe"
-                        value={formData.cardName}
-                        onChange={handleInputChange}
-                        required
-                      />
-                      {errors.cardName && <span className="error-message">{errors.cardName}</span>}
-                    </div>
-                    <div className="input-group">
-                      <label htmlFor="billingAddress">Billing Address</label>
-                      <input
-                        type="text"
-                        id="billingAddress"
-                        name="billingAddress"
-                        placeholder="123 Main St"
-                        value={formData.billingAddress}
-                        onChange={handleInputChange}
-                        required
-                      />
-                      {errors.billingAddress && <span className="error-message">{errors.billingAddress}</span>}
-                    </div>
-                    <div className="card-details">
-                      <div className="input-group">
-                        <label htmlFor="cardNumber">Card Number</label>
-                        <input
-                          type="text"
-                          id="cardNumber"
-                          name="cardNumber"
-                          placeholder="1234 5678 9012 3456"
-                          value={formData.cardNumber}
-                          onChange={handleInputChange}
-                          required
-                          className="card-number"
-                        />
-                        {errors.cardNumber && <span className="error-message">{errors.cardNumber}</span>}
-                      </div>
-                      <div className="input-group">
-                        <label htmlFor="expDate">Expiration Date</label>
-                        <input
-                          type="text"
-                          id="expDate"
-                          name="expDate"
-                          placeholder="MM/YYYY"
-                          value={formData.expDate}
-                          onChange={handleInputChange}
-                          required
-                          className="exp-date"
-                        />
-                        {errors.expDate && <span className="error-message">{errors.expDate}</span>}
-                      </div>
-                      <div className="input-group">
-                        <label htmlFor="cvv">CVV</label>
-                        <input
-                          type="text"
-                          id="cvv"
-                          name="cvv"
-                          placeholder="123"
-                          value={formData.cvv}
-                          onChange={handleInputChange}
-                          required
-                          className="cvv"
-                        />
-                        {errors.cvv && <span className="error-message">{errors.cvv}</span>}
-                      </div>
-                    </div>
+                ) : (
+                  <div className="confirmation-message">
+                    <div className="checkmark">✓</div>
+                    <h2>Order Confirmed!</h2>
+                    <p>Thank you for your purchase. Your order has been received and is being prepared for delivery.</p>
+                    <p>Order Total: ${total.toFixed(2)}</p>
+                    <button onClick={handleBackToHome} className="back-to-home-button">
+                      Back to Home
+                    </button>
                   </div>
-                  <div className="order-summary">
-                    <h3>Order Summary</h3>
-                    <div className="summary-row">
-                      <span>Subtotal:</span>
-                      <span>${cartSubtotal.toFixed(2)}</span>
-                    </div>
-                    <div className="summary-row">
-                      <span>Tax:</span>
-                      <span>${tax.toFixed(2)}</span>
-                    </div>
-                    <div className="summary-row total">
-                      <span>Total:</span>
-                      <span>${total.toFixed(2)}</span>
-                    </div>
-                  </div>
-                  <button type="submit" className="checkout-button">
-                    Complete Purchase
-                  </button>
-                </form>
+                )}
               </div>
             </div>
           </div>

@@ -16,7 +16,10 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     position: relative;
     z-index: 1;
-    box-sizing: border-box; /* Add this to include padding in width calculation */
+    box-sizing: border-box;
+    min-height: 600px; /* Add minimum height to match form height */
+    display: flex;
+    flex-direction: column;
 }
 
 .checkout-container h2 {
@@ -54,19 +57,30 @@
 .checkout-container input {
     width: 100%;
     padding: 0.8rem;
-    margin-bottom: 0; /* Remove margin since we're using input-group */
+    margin-bottom: 0;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 4px;
-    background-color: var(--input-background);
+    background-color: white;
     color: var(--text-color);
     font-size: 1rem;
     box-sizing: border-box;
+}
+
+/* Override browser autofill styles */
+.checkout-container input:-webkit-autofill,
+.checkout-container input:-webkit-autofill:hover,
+.checkout-container input:-webkit-autofill:focus,
+.checkout-container input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 .checkout-container input:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+    background-color: white;
 }
 
 .city-state-zip {
@@ -157,8 +171,9 @@
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
     .checkout-container input {
-        background-color: var(--dark-input-background);
+        background-color: white !important;
         border-color: var(--dark-border-color);
+        color: black;
     }
 
     .form-section,
@@ -195,4 +210,90 @@
     font-size: 0.8rem;
     margin-top: 0.25rem;
     display: block;
+}
+
+.checkout-content {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-content.fade-out {
+    opacity: 0;
+}
+
+.confirmation-message {
+    text-align: center;
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkmark {
+    color: #4CAF50;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: scaleIn 0.5s ease-out;
+}
+
+.confirmation-message h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.confirmation-message p {
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.dark-mode .confirmation-message h2 {
+    color: #fff;
+}
+
+.dark-mode .confirmation-message p {
+    color: #ccc;
+}
+
+.back-to-home-button {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.back-to-home-button:hover {
+    background-color: var(--primary-color-dark);
 } 
