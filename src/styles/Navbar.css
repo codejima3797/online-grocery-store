@@ -101,3 +101,87 @@ body.dark-mode .nav__dropdown {
   justify-content: center;
   z-index: 1;
 }
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sign-out-button {
+  background: none;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.sign-out-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.auth-divider span {
+  padding: 0 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Clerk component styles */
+.cl-rootBox {
+  width: 100% !important;
+}
+
+.cl-formButtonPrimary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.cl-formButtonPrimary:hover {
+  background-color: var(--primary-color-dark) !important;
+}
+
+.cl-footerActionLink {
+  color: var(--primary-color) !important;
+}
+
+.cl-footerActionLink:hover {
+  color: var(--primary-color-dark) !important;
+}
+
+/* Dark mode adjustments */
+.dark-mode .sign-out-button {
+  border-color: #fff;
+  color: #fff;
+}
+
+.dark-mode .sign-out-button:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+.dark-mode .auth-divider span {
+  color: #ccc;
+}
+
+.dark-mode .auth-divider::before,
+.dark-mode .auth-divider::after {
+  border-color: #444;
+}

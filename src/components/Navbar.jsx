@@ -7,12 +7,16 @@ import { CgDarkMode } from "react-icons/cg";
 import TraderJoeLogoNoText from "../assets/trader-joe-logo-no-text.png";
 import { useSelector } from 'react-redux';
 import ContactModal from "./ContactModal";
+import { SignIn, SignUp, useUser, useClerk } from "@clerk/clerk-react";
 
 const Navbar = ({ setIsFading }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const cartItems = useSelector((state) => state.cart.totalItems);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const { isSignedIn, user } = useUser();
+  const { signOut } = useClerk();
 
   function toggleDarkMode() {
     const body = document.body;
@@ -39,9 +43,14 @@ const Navbar = ({ setIsFading }) => {
         </div>
         <div className="nav__links navbar__items">
           <div className="nav__link">
-            <span className="nav__login">Log In</span>{" "}
-            <span className="nav__slash">/</span>{" "}
-            <span className="nav__signup">Sign Up</span>
+            {isSignedIn ? (
+              <div className="user-menu">
+                <span className="nav__login">{user.emailAddresses[0].emailAddress}</span>
+                <button onClick={() => signOut()} className="sign-out-button">Sign Out</button>
+              </div>
+            ) : (
+              <span className="nav__login" onClick={() => setIsAuthModalOpen(true)}>Sign Up / Log In</span>
+            )}
           </div>
           <select 
             className="nav__link nav__dropdown"
@@ -90,6 +99,18 @@ const Navbar = ({ setIsFading }) => {
           {/* burger for mobile */}
         </div>
       </nav>
+      {isAuthModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsAuthModalOpen(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setIsAuthModalOpen(false)}>×</button>
+            <SignIn />
+            <div className="auth-divider">
+              <span>or</span>
+            </div>
+            <SignUp />
+          </div>
+        </div>
+      )}
       <ContactModal 
         isOpen={isContactModalOpen} 
         onClose={() => setIsContactModalOpen(false)} 
