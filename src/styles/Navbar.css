@@ -145,10 +145,6 @@ body.dark-mode .nav__dropdown {
 }
 
 /* Clerk component styles */
-.cl-rootBox {
-  width: 100% !important;
-}
-
 .cl-formButtonPrimary {
   background-color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
@@ -184,4 +180,11 @@ body.dark-mode .nav__dropdown {
 .dark-mode .auth-divider::before,
 .dark-mode .auth-divider::after {
   border-color: #444;
+}
+
+/* Specific styles for the Auth modal to center the Clerk component */
+.auth-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

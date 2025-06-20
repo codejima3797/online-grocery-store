@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useSyncExternalStore } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/Navbar.css";
 import { PiHouseLineBold } from "react-icons/pi";
@@ -9,6 +9,15 @@ import { useSelector } from 'react-redux';
 import ContactModal from "./ContactModal";
 import { SignIn, SignUp, useUser, useClerk } from "@clerk/clerk-react";
 
+// These functions subscribe to the browser's hashchange event
+const subscribe = (callback) => {
+  window.addEventListener('hashchange', callback);
+  return () => window.removeEventListener('hashchange', callback);
+};
+
+// This function gets the current value of the hash
+const getSnapshot = () => window.location.hash;
+
 const Navbar = ({ setIsFading }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,6 +26,9 @@ const Navbar = ({ setIsFading }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { isSignedIn, user } = useUser();
   const { signOut } = useClerk();
+
+  // useSyncExternalStore guarantees the component will re-render when the hash changes
+  const hash = useSyncExternalStore(subscribe, getSnapshot);
 
   function toggleDarkMode() {
     const body = document.body;
@@ -29,6 +41,16 @@ const Navbar = ({ setIsFading }) => {
       navigate(destination);
     }, 1000);
   };
+
+  const openAuthModal = () => setIsAuthModalOpen(true);
+
+  const closeAuthModal = () => {
+    // Clear the hash in the URL when the modal closes
+    navigate(location.pathname, { replace: true });
+    setIsAuthModalOpen(false);
+  };
+
+  const showSignUp = hash.startsWith('#signup');
 
   return (
     <>
@@ -49,7 +71,7 @@ const Navbar = ({ setIsFading }) => {
                 <button onClick={() => signOut()} className="sign-out-button">Sign Out</button>
               </div>
             ) : (
-              <span className="nav__login" onClick={() => setIsAuthModalOpen(true)}>Sign Up / Log In</span>
+              <span className="nav__login" onClick={openAuthModal}>Sign Up / Log In</span>
             )}
           </div>
           <select 
@@ -100,14 +122,14 @@ const Navbar = ({ setIsFading }) => {
         </div>
       </nav>
       {isAuthModalOpen && (
-        <div className="modal-overlay" onClick={() => setIsAuthModalOpen(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setIsAuthModalOpen(false)}>×</button>
-            <SignIn />
-            <div className="auth-divider">
-              <span>or</span>
-            </div>
-            <SignUp />
+        <div className="modal-overlay" onClick={closeAuthModal}>
+          <div className="modal-content auth-modal-content" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeAuthModal}>×</button>
+            {showSignUp ? (
+              <SignUp signInUrl="#signin" routing="hash" />
+            ) : (
+              <SignIn signUpUrl="#signup" routing="hash" />
+            )}
           </div>
         </div>
       )}
